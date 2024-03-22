@@ -2,7 +2,7 @@
 
 ## Milestone 1
 
-Apa yang ada pada method handle_connection?
+1. Apa yang ada pada method handle_connection?
 
 
 method ini akan menangani koneksi dari klien. Method ini akan membaca request HTTP dari klien dan mencetaknya ke konsol.
@@ -25,7 +25,7 @@ Mencetak request HTTP ke konsol dengan format debug.
 
 ## Milestone 2
 
-Line tambahan pada handle_request()
+2. Line tambahan pada handle_request()
 
 ``` let status_line = "HTTP/1.1 200 OK ```
 
@@ -52,6 +52,69 @@ Membuat response HTTP yang akan dikirim ke klien. Response terdiri dari status l
  Mengirim response ke klien dalam bentuk byte array setelah diubah dari string menggunakan as_bytes(). Jika terjadi kesalahan dalam proses pengiriman, program akan panic dan keluar dengan menggunakan unwrap()
 
 ![Commit 2 screen capture](https://github.com/gnh374/advprog-module6/assets/121223135/6ae0a253-c64e-497b-a73d-a883c680d405)
+
+
+## Milestone 3
+
+3. Cara membedakan response dan mengapa dibutuhkan?
+
+Response dibedakan dengan melakukan validasi terhadap baris pertama dari HTTP request
+
+```let request_line = buf_reader.lines().next().unwrap().unwrap(); ```
+
+
+Kita hanya ingin mengambil baris pertama dari HTTP Request sehingga kita gunakan method ```next``` kemudian ```unwrap``` yang pertama akan mengurus objek ```Option``` dan  ```unwrap``` yang kedua akan mengurus objek ```Result``` 
+
+```
+ if request_line == "GET / HTTP/1.1" {
+        let status_line = "HTTP/1.1 200 OK";
+        let contents = std::fs::read_to_string("hello.html").unwrap();
+        let length = contents.len();
+
+        let response = format!(
+            "{status_line}\r\nContent-Length: {length}\r\n\r\n{contents}"
+        );
+
+        stream.write_all(response.as_bytes()).unwrap();
+    } else {
+        let status_line = "HTTP/1.1 404 NOT FOUND";
+        let contents = std::fs::read_to_string("404.html").unwrap();
+        let length = contents.len();
+
+        let response = format!(
+            "{status_line}\r\nContent-Length: {length}\r\n\r\n{contents}"
+        );
+
+        stream.write_all(response.as_bytes()).unwrap();
+    }
+```
+
+Selanjutnya kita akan melakukan pengecekan isi dari request_line. Jika sesuai dengan GET request ke path makan akan dimunculkan halaman hello.html. Jika selain itu, maka akan dimunculkan halaman 404.html
+
+
+Disini saya juga membuat halaman 404.html
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello!</title>
+  </head>
+  <body>
+    <h1>Oops!</h1>
+    <p>Sorry, I don't know what you're asking for.</p>
+    <p>Rust is running from Gabriella's machine.</p>
+  </body>
+</html>
+
+ ```
+
+Perlu dilakukan validating request untuk memastikan bahwa request yang diterima oleh server sesuai dengan apa yang diharapkan dan tidak mengandung masalah keamanan atau kesalahan lainnya. 
+
+Response yang diberikan perlu dibedakan untuk membedakan konten response dan kode status HTTP yang dikirimkan ke klien. Hal ini penting agar response yang diterima sesuai dengan apa yang direquest oleh user. Selain itu, pembedaan response juga dapat membantu meningkatkan efisiensi dan menjaga keamanan.
+
+
+
 
 
 
