@@ -140,6 +140,19 @@ Response yang diberikan perlu dibedakan untuk membedakan konten response dan kod
 ![Screenshot 2024-03-22 114423](https://github.com/gnh374/advprog-module6/assets/121223135/4bd1aadf-a475-4073-982e-4a523b208104)
 
 
+## Milestone 3
+
+```
+let (status_line, filename) = match &request_line[..] {
+ "GET / HTTP/1.1" => ("HTTP/1.1 200 OK", "hello.html"), "GET /sleep HTTP/1.1" => {
+ thread::sleep(Duration::from_secs(10)); ("HTTP/1.1 200 OK", "hello.html") }
+ _ => ("HTTP/1.1 404 NOT FOUND", "404.html"),
+ };
+
+```
+
+Disini digunakan ```match``` untuk menentukan response yang sesuai berdasarkan isi dari ```request_line```. Jika request adalah "GET / HTTP/1.1", server akan merespons dengan file "hello.html" dan status "HTTP/1.1 200 OK". Jika request adalah "GET /sleep HTTP/1.1", server akan berhenti selama 10 detik sebelum merespons dengan file "hello.html" dan status "HTTP/1.1 200 OK". Jika request tidak sesuai dengan pola yang ada, server akan merespons dengan file "404.html" dan status "HTTP/1.1 404 NOT FOUND".
+
 
 
 
