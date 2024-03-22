@@ -51,5 +51,5 @@ Membuat response HTTP yang akan dikirim ke klien. Response terdiri dari status l
 
  Mengirim response ke klien dalam bentuk byte array setelah diubah dari string menggunakan as_bytes(). Jika terjadi kesalahan dalam proses pengiriman, program akan panic dan keluar dengan menggunakan unwrap()
 
+![Commit 2 screen capture](https://github.com/gnh374/advprog-module6/assets/121223135/b2bd7089-8574-4489-abce-761f75205571)
 
- [GAMBARRRRR]
