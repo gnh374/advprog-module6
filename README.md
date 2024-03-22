@@ -113,6 +113,9 @@ Perlu dilakukan validating request untuk memastikan bahwa request yang diterima 
 
 Response yang diberikan perlu dibedakan untuk membedakan konten response dan kode status HTTP yang dikirimkan ke klien. Hal ini penting agar response yang diterima sesuai dengan apa yang direquest oleh user. Selain itu, pembedaan response juga dapat membantu meningkatkan efisiensi dan menjaga keamanan.
 
+![Screenshot 2024-03-22 114423](https://github.com/gnh374/advprog-module6/assets/121223135/4bd1aadf-a475-4073-982e-4a523b208104)
+
+
 
 
 
