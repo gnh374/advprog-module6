@@ -161,7 +161,7 @@ Bagaiamana thread pool bekerja?
 Thread pool adalah sekumpulan spawned thread yang menunggu untuk diberikan tugas. Jika ada tugas baru, tugas ini akan menugaskan salah satu thread untuk bekerja. Thread lainnya akan siap untuk menangani tugas lainnya selama tugas pertama tadi dikerjakan oleh thread yang pertama. Jika tugas pertama sudah selesai, thread yang tadi mengerjakan tugas pertama akan kembali ke status idle dan siap untuk mengerjakan tugas selanjutnya. Thread pool juga memiliki queue jika semua thread dalam thread pool sedang bekerja. Thread pool memungkinkan kita untuk memrosess koneksi kita secara concurrent dan dapat meingkatkan throughput dari server.
 
 ## Bonus
-Saya mencoba mengimplementasikan buikd sebagai penggantu dari new. Ini lebih ideal karena memiliki error handling yang lebih jelas sehingga tidak akan panik jika size dari threadpool berukuran 0
+Saya mencoba mengimplementasikan build sebagai pengganti dari new. Ini lebih ideal karena memiliki error handling yang lebih jelas sehingga tidak akan panik jika size dari threadpool berukuran 0
 
 
 
